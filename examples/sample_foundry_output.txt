@@ -1,0 +1,11 @@
+Ran 5 tests for test/unit-test/InvariantPoC.t.sol:InvariantPoCTest
+[PASS] test_fullValueStrategyStillLocksHalfOfHighNavAfterOneWeiAsyncExit()
+[PASS] test_lowSupplyHighNavFullAsyncExitLeavesLargeCachedDustAndBlocksSmallDeposit()
+[PASS] test_multisigStrategyNavUpdateGivesPreSetupAttackerProfitFromProtocolFunds()
+Logs:
+  reported protocol NAV: 1208925819614629174706176
+  attacker profit excluding 1 wei principal: 604462909807314587353087
+  stuck cachedTotalAssets: 604462909807314587353088
+[PASS] test_operatorCreateStillAllowsOneWeiDepositBeforeSetup()
+[PASS] test_publicFactoryCreateAllowsInitialOneWeiSharePoisoningBeforeManagerSetup()
+Suite result: ok. 5 passed; 0 failed; 0 skipped
