@@ -9,7 +9,7 @@ InvariantLab
 ## BUIDL Logo
 
 ```text
-docs/screenshots/063-invariantlab-logo-480.png
+invariantlab/assets/invariantlab-logo-480.png
 ```
 
 ## Vision
@@ -51,13 +51,24 @@ https://github.com/lausiv7/invariantlab
 Upload this file to YouTube and paste the YouTube link:
 
 ```text
-docs/screenshots/063-invariantlab-demo.mp4
+invariantlab/demo/invariantlab-demo.mp4
 ```
 
 ## Social Link
 
 ```text
 https://github.com/lausiv7
+```
+
+## Technology Stack Used
+
+```text
+Python 3
+Foundry
+Solidity
+GitHub
+Pillow
+FFmpeg
 ```
 
 ## Details
