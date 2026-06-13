@@ -58,7 +58,7 @@ flowchart LR
 
 The MVP keeps invariant selection human-reviewed. Execution and evidence parsing are automated.
 
-## ETHGlobal Fit
+## Hackathon Fit
 
 Project name:
 
@@ -82,6 +82,19 @@ Developer Tools
 Data / Risk Infrastructure
 ```
 
+Current online targets:
+
+```text
+DoraHacks Casper Agentic Buildathon 2026
+DoraHacks / Mantle Turing Test Hackathon 2026
+```
+
+Positioning:
+
+```text
+InvariantLab is a safety layer for AI agents that interact with DeFi. Before an agent moves capital, it checks protocol-specific economic invariants and produces executable evidence.
+```
+
 ## Repository Layout
 
 ```text
@@ -89,6 +102,8 @@ scripts/invariantlab_demo.py
 examples/sample_foundry_output.txt
 docs/architecture.md
 docs/ethglobal-newyork2026-submission.md
+docs/dorahacks-casper-agentic-buildathon-submission.md
+docs/dorahacks-mantle-turing-test-submission.md
 ```
 
 ## Roadmap
