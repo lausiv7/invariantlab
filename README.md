@@ -1,8 +1,8 @@
 # InvariantLab
 
-AI-assisted DeFi invariant discovery and Foundry-based exploit verification.
+AI-assisted DeFi invariant discovery and Foundry-based exploit verification agent.
 
-InvariantLab is a hackathon PoC for converting DeFi security reasoning into runnable evidence. It focuses on economic invariants such as vault launch state, share accounting, total assets, oracle value, liquidation debt, and settlement state.
+InvariantLab is a hackathon PoC for converting DeFi security reasoning into an execution decision. It focuses on economic invariants such as vault launch state, share accounting, total assets, oracle value, liquidation debt, and settlement state.
 
 The current demo models a vault launch invariant:
 
@@ -29,6 +29,7 @@ tests: 5 passed
 reported_protocol_nav: 1208925819614629174706176
 attacker_profit_excluding_1_wei: 604462909807314587353087
 stuck_cached_total_assets: 604462909807314587353088
+agent_decision: BLOCK
 ```
 
 Run against a private Foundry PoC:
@@ -44,6 +45,12 @@ JSON output:
 
 ```bash
 python3 scripts/invariantlab_demo.py --sample --json
+```
+
+Agent decision output:
+
+```bash
+python3 scripts/invariantlab_demo.py --sample --agent-check
 ```
 
 Demo video asset:
@@ -104,7 +111,7 @@ DoraHacks / Mantle Turing Test Hackathon 2026
 Positioning:
 
 ```text
-InvariantLab is a safety layer for AI agents that interact with DeFi. Before an agent moves capital, it checks protocol-specific economic invariants and produces executable evidence.
+InvariantLab is a safety agent for DeFi workflows. Before an agent moves capital, it checks protocol-specific economic invariants and returns ALLOW/BLOCK/REVIEW with executable evidence.
 ```
 
 ## Repository Layout

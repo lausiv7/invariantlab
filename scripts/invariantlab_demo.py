@@ -24,7 +24,7 @@ def extract_int(label, text):
 
 def parse_summary(output, log_path=None):
     pass_count = re.search(r"Suite result: ok\. ([0-9]+) passed; 0 failed; 0 skipped", output)
-    return {
+    summary = {
         "project": "InvariantLab",
         "demo": "vault launch invariant",
         "invariant": "a new vault must not accept first external shares before setup/activation",
@@ -37,6 +37,30 @@ def parse_summary(output, log_path=None):
             "limits, and seed state are configured"
         ),
         "log": str(log_path) if log_path else None,
+    }
+    summary["agent_decision"] = agent_check(summary)
+    return summary
+
+
+def agent_check(summary):
+    profit = summary.get("attacker_profit_excluding_1_wei") or 0
+    stuck = summary.get("stuck_cached_total_assets") or 0
+    if summary.get("tests") == "not ok":
+        return {
+            "decision": "REVIEW",
+            "reason": "verification did not complete cleanly",
+            "risk": "unknown",
+        }
+    if profit > 0 or stuck > 0:
+        return {
+            "decision": "BLOCK",
+            "reason": "economic invariant violation detected before execution",
+            "risk": "attacker profit or stuck accounting observed",
+        }
+    return {
+        "decision": "ALLOW",
+        "reason": "no measured invariant violation in the current run",
+        "risk": "none observed",
     }
 
 
@@ -51,6 +75,8 @@ def print_summary(summary, as_json):
         if summary[key] is not None:
             print(f"{key}: {summary[key]}")
     print(f"patch_recommendation: {summary['patch_recommendation']}")
+    print(f"agent_decision: {summary['agent_decision']['decision']}")
+    print(f"agent_reason: {summary['agent_decision']['reason']}")
     if summary["log"]:
         print(f"log: {summary['log']}")
 
@@ -63,11 +89,16 @@ def main():
     parser.add_argument("--match-path", default=DEFAULT_TARGET_PATH, help="Foundry match path inside target repo")
     parser.add_argument("--log", help="optional log output path")
     parser.add_argument("--json", action="store_true", help="print machine-readable summary")
+    parser.add_argument("--agent-check", action="store_true", help="print only the agent execution decision")
     args = parser.parse_args()
 
     if args.sample:
         output = SAMPLE_OUTPUT.read_text(encoding="utf-8")
-        print_summary(parse_summary(output), args.json)
+        summary = parse_summary(output)
+        if args.agent_check:
+            print(json.dumps(summary["agent_decision"], indent=2))
+        else:
+            print_summary(summary, args.json)
         return
 
     if not args.target_repo or not args.poc_file:
@@ -95,7 +126,10 @@ def main():
     summary = parse_summary(output, log_path)
     summary["repo"] = str(repo)
     summary["command"] = " ".join(command)
-    print_summary(summary, args.json)
+    if args.agent_check:
+        print(json.dumps(summary["agent_decision"], indent=2))
+    else:
+        print_summary(summary, args.json)
     raise SystemExit(code)
 
 

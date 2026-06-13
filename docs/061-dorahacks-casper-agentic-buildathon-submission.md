@@ -15,7 +15,7 @@ invariantlab/assets/invariantlab-logo-480.png
 ## Vision
 
 ```text
-InvariantLab is an AI-assisted DeFi invariant verification tool. It helps developers and AI agents check whether a protocol action violates critical economic invariants before capital moves on-chain.
+InvariantLab is an AI-assisted DeFi invariant verification agent. It checks whether a proposed DeFi action violates critical economic invariants before capital moves on-chain, then returns an execution decision such as `ALLOW`, `BLOCK`, or `REVIEW`.
 
 The current MVP demonstrates vault launch safety: a newly deployed vault should not accept the first external share before setup and activation are complete. InvariantLab turns that invariant into runnable evidence by parsing Foundry PoC output and returning pass count, attacker profit, stuck assets, and a patch recommendation.
 ```
@@ -29,10 +29,10 @@ AI Agents / DeFi / Developer Tools / Risk Infrastructure
 ## Is this BUIDL an AI Agent?
 
 ```text
-No
+Yes
 ```
 
-InvariantLab is currently an agent safety and verification tool, not a fully autonomous agent. It can later expose MCP/tools for agents.
+InvariantLab acts as a pre-execution risk agent. It does not trade or move funds by itself; it evaluates a proposed DeFi action and returns an execution decision based on invariant evidence.
 
 ## GitHub
 
@@ -69,12 +69,13 @@ Solidity
 GitHub
 Pillow
 FFmpeg
+Agent decision CLI
 ```
 
 ## Details
 
 ```text
-InvariantLab converts DeFi security reasoning into runnable evidence. It models protocol-specific economic invariants, runs a Foundry PoC or verification test, parses measurable impact, and returns a patch recommendation.
+InvariantLab converts DeFi security reasoning into an agent decision. It models protocol-specific economic invariants, runs a Foundry PoC or verification test, parses measurable impact, and returns ALLOW/BLOCK/REVIEW with a reason.
 
 For an agentic DeFi workflow, this becomes a pre-execution safety gate:
 
@@ -88,12 +89,18 @@ Run:
 
 python3 scripts/invariantlab_demo.py --sample
 
+Agent decision mode:
+
+python3 scripts/invariantlab_demo.py --sample --agent-check
+
 Observed result:
 
 tests: 5 passed
 reported_protocol_nav: 1208925819614629174706176
 attacker_profit_excluding_1_wei: 604462909807314587353087
 stuck_cached_total_assets: 604462909807314587353088
+agent_decision: BLOCK
+agent_reason: economic invariant violation detected before execution
 
 The next version adds an MCP server interface:
 
