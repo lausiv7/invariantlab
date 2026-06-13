@@ -46,6 +46,18 @@ JSON output:
 python3 scripts/invariantlab_demo.py --sample --json
 ```
 
+Demo video asset:
+
+```text
+demo/invariantlab-demo.mp4
+```
+
+Logo:
+
+```text
+assets/invariantlab-logo-480.png
+```
+
 ## Architecture
 
 ```mermaid
