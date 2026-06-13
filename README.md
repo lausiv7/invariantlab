@@ -102,8 +102,8 @@ scripts/invariantlab_demo.py
 examples/sample_foundry_output.txt
 docs/architecture.md
 docs/ethglobal-newyork2026-submission.md
-docs/dorahacks-casper-agentic-buildathon-submission.md
-docs/dorahacks-mantle-turing-test-submission.md
+docs/061-dorahacks-casper-agentic-buildathon-submission.md
+docs/062-dorahacks-mantle-turing-test-submission.md
 ```
 
 ## Roadmap
